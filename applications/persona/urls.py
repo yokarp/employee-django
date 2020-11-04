@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.urls import path
 
-def DesdeApp(self):
-    print('==============Chupame un webote=====================')
+from . import views
 
 urlpatterns = [
-    path('persona/', DesdeApp),
+    path('listar-todo-empleados/', views.ListAllEmpleados.as_view()),
+    path('listar-by-area/<shorname>/', views.ListByAreaEmpleado.as_view()),
+    path('buscar-empleado/', views.ListEmpleadosByKword.as_view()),
 ]
+
