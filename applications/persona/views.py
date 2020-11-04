@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import (
-    ListView
+    ListView,
+    DetailView
 )
 # Models
 from .models import Empleado
@@ -37,3 +38,16 @@ class ListEmpleadosByKword(ListView):
         )
         return lista
 
+class ListHabilidadesEmpleado(ListView):
+    """Lista dehabilidades"""
+    template_name = 'persona/habilidades.html'
+    context_object_name = 'habilidades'
+
+    def get_queryset(self):
+        empleado = Empleado.objects.get(id=2)
+        return empleado.habilidades.all()
+
+
+class EmpleadoDetailView(DetailView):
+    model = Empleado
+    template_name = "persona/detail_empleado.html"
