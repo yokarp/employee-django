@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import (
     ListView,
-    DetailView
+    DetailView,
+    CreateView,
+    TemplateView
 )
 # Models
 from .models import Empleado
@@ -51,3 +53,20 @@ class ListHabilidadesEmpleado(ListView):
 class EmpleadoDetailView(DetailView):
     model = Empleado
     template_name = "persona/detail_empleado.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(EmpleadoDetailView, self).get_context_data(**kwargs)
+        context['titulo'] = 'Empleado del mes'
+        return context
+
+
+class SuccessView(TemplateView):
+    template_name = "persona/success.html"
+
+
+class EmpleadoCreateView(CreateView):
+    template_name = "persona/add.html"
+    model = Empleado
+    #fields = ['first_name', 'last_name', 'job']
+    fields = ('__all__')
+    success_url = '/success'
