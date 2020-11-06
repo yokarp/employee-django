@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
-    TemplateView
+    TemplateView,
+    UpdateView
 )
 # Models
 from .models import Empleado
@@ -67,6 +69,31 @@ class SuccessView(TemplateView):
 class EmpleadoCreateView(CreateView):
     template_name = "persona/add.html"
     model = Empleado
-    #fields = ['first_name', 'last_name', 'job']
-    fields = ('__all__')
-    success_url = '/success'
+    fields = [
+        'first_name',
+        'last_name',
+        'job',
+        'departamento',
+        'habilidades',
+    ]
+    #fields = ('__all__')
+    success_url = reverse_lazy('persona_app:correcto')
+
+    def form_valid(self, form):
+        #Lógica del proceso
+        empleado = form.save(commit=False)
+        empleado.full_name = empleado.first_name + ' ' + empleado.last_name
+        empleado.save()
+        return super(EmpleadoCreateView, self).form
+
+class EmpleadoUpdateView(UpdateView):
+    template_name = "persona/update.html"
+    model = Empleado
+    fields = [
+        'first_name',
+        'last_name',
+        'job',
+        'departamento',
+        'habilidades',
+    ]
+    success_url = reverse_lazy('persona_app:correcto')
