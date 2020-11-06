@@ -5,7 +5,8 @@ from django.views.generic import (
     DetailView,
     CreateView,
     TemplateView,
-    UpdateView
+    UpdateView,
+    DeleteView
 )
 # Models
 from .models import Empleado
@@ -96,4 +97,18 @@ class EmpleadoUpdateView(UpdateView):
         'departamento',
         'habilidades',
     ]
+    success_url = reverse_lazy('persona_app:correcto')
+
+    #Método de intersección de datos
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        print('************************')
+        print(request.POST)
+        print(request.POST['last_name'])
+        return super().post(request, *args, **kwargs)
+
+
+class EmpleadoDeleteView(DeleteView):
+    model = Empleado
+    template_name = "persona/delete.html"
     success_url = reverse_lazy('persona_app:correcto')

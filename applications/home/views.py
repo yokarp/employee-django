@@ -7,7 +7,9 @@ from django.views.generic import (
 )
 
 from .models import Prueba
+from .forms import PruebaForm
 # Create your views here.
+
 class PruebaView(TemplateView):
     template_name = 'home/prueba.html'
 
@@ -27,5 +29,5 @@ class ListaPrueba(ListView):
 class PruebaCreateView(CreateView):
     template_name = "home/add.html"
     model = Prueba
-    fields = ['titulo', 'subtitulo', 'cantidad']
-    
+    form_class = PruebaForm
+    success_url = '/'

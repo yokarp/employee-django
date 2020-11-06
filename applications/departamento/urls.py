@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 
-def DesdeApp(self):
-    print('==============Chupame un webo=====================')
+from . import views
 
 urlpatterns = [
-    path('departamento/', DesdeApp),
+    path('new-departamento/', views.NewDepartamentoView.as_view(), name='nuevo_departamento'),
 ]

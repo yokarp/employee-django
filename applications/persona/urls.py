@@ -40,5 +40,10 @@ urlpatterns = [
         views.EmpleadoUpdateView.as_view(),
         name='update'
      ),
+      path(
+        'delete-empleado/<pk>/',
+        views.EmpleadoDeleteView.as_view(),
+        name='update'
+     ),
 ]
 
