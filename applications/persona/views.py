@@ -11,12 +11,23 @@ from django.views.generic import (
 # Models
 from .models import Empleado
 
+class InicioView(TemplateView):
+    """Vista que carga la página de inicio"""
+    template_name = 'inicio.html'
+
+
 class ListAllEmpleados(ListView):
     template_name: 'persona/empleado_list.html'
     paginate_by = 4
     ordering = 'first_name'
-    model = Empleado
     context_object_name = 'lista'
+
+    def get_queryset(self):
+        palabra_clave = self.request.GET.get("kword", '')
+        lista = Empleado.objects.filter(
+            first_name__icontains=palabra_clave
+        )
+        return lista
 
 
 class ListByAreaEmpleado(ListView):

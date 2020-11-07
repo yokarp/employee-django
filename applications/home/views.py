@@ -14,6 +14,10 @@ class PruebaView(TemplateView):
     template_name = 'home/prueba.html'
 
 
+class ResumeFoundationView(TemplateView):
+    template_name = 'home/resume_foundation.html'
+
+
 class PruebaListView(ListView):
     template_name = "home/lista.html"
     context_object_name = 'listaNumeros'

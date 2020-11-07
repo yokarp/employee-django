@@ -6,9 +6,14 @@ from . import views
 app_name = "persona_app"
 
 urlpatterns = [
+      path(
+        '',
+        views.InicioView.as_view()
+    ),
     path(
         'listar-todo-empleados/',
-        views.ListAllEmpleados.as_view()
+        views.ListAllEmpleados.as_view(),
+        name='empleado_all'
     ),
     path(
         'listar-by-area/<shorname>/',
@@ -24,7 +29,8 @@ urlpatterns = [
     ),
     path(
         'ver-empleado/<pk>/',
-        views.EmpleadoDetailView.as_view()
+        views.EmpleadoDetailView.as_view(),
+        name='empleado_detail'
     ),
     path(
         'add-empleado/',
