@@ -17,7 +17,8 @@ urlpatterns = [
     ),
     path(
         'listar-by-area/<shorname>/',
-        views.ListByAreaEmpleado.as_view()
+        views.ListByAreaEmpleado.as_view(),
+        name="empleados_area"
     ),
     path(
         'buscar-empleado/',

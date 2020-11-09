@@ -10,7 +10,7 @@
                     <tr>
                         <td>{{ departamento.name }}</td>
                         <td>{{ departamento.shot_name }}</td>
-                        <td><a class="button warning" href="#">Ver Empleados</a></td>
+                        <td><a class="button warning" href="{% url 'persona_app:empleados_area' departamento.shot_name %}">Ver Empleados</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
