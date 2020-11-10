@@ -29,6 +29,19 @@ class ListAllEmpleados(ListView):
         )
         return lista
 
+class ListEmpleadosAdmin(ListView):
+    template_name: 'persona/empleado_list.html'
+    paginate_by = 4
+    ordering = 'first_name'
+    context_object_name = 'lista'
+
+    def get_queryset(self):
+        palabra_clave = self.request.GET.get("kword", '')
+        lista = Empleado.objects.filter(
+            first_name__icontains=palabra_clave
+        )
+        return lista
+
 
 class ListByAreaEmpleado(ListView):
     """ Lista empleados de una area"""
