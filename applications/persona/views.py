@@ -29,19 +29,6 @@ class ListAllEmpleados(ListView):
         )
         return lista
 
-class ListEmpleadosAdmin(ListView):
-    template_name: 'persona/empleado_list.html'
-    paginate_by = 4
-    ordering = 'first_name'
-    context_object_name = 'lista'
-
-    def get_queryset(self):
-        palabra_clave = self.request.GET.get("kword", '')
-        lista = Empleado.objects.filter(
-            first_name__icontains=palabra_clave
-        )
-        return lista
-
 
 class ListByAreaEmpleado(ListView):
     """ Lista empleados de una area"""
@@ -55,6 +42,7 @@ class ListByAreaEmpleado(ListView):
         return lista
     context_object_name = 'lista'
 
+
 class ListEmpleadosByKword(ListView):
     """ Lista de empleados palabra clave"""
     template_name = 'persona/by_kword.html'
@@ -66,6 +54,7 @@ class ListEmpleadosByKword(ListView):
             first_name=palabra_clave
         )
         return lista
+
 
 class ListHabilidadesEmpleado(ListView):
     """Lista dehabilidades"""
@@ -111,6 +100,7 @@ class EmpleadoCreateView(CreateView):
         empleado.save()
         return super(EmpleadoCreateView, self).form
 
+
 class EmpleadoUpdateView(UpdateView):
     template_name = "persona/update.html"
     model = Empleado
@@ -136,3 +126,12 @@ class EmpleadoDeleteView(DeleteView):
     model = Empleado
     template_name = "persona/delete.html"
     success_url = reverse_lazy('persona_app:correcto')
+
+
+class ListEmpleadosAdmin(ListView):
+    print('Hola')
+    template_name = "persona/lista_empleados.html"
+    paginate_by = 8
+    ordering = 'first_name'
+    context_object_name = 'lista'
+    model = Empleado

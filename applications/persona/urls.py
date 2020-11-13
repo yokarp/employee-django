@@ -20,6 +20,11 @@ urlpatterns = [
         views.ListByAreaEmpleado.as_view(),
         name="empleados_area"
     ),
+     path(
+        'listar-empleados-admin/',
+        views.ListEmpleadosAdmin.as_view(),
+        name='empleados_admin'
+    ),
     path(
         'buscar-empleado/',
         views.ListEmpleadosByKword.as_view()
@@ -50,7 +55,7 @@ urlpatterns = [
       path(
         'delete-empleado/<pk>/',
         views.EmpleadoDeleteView.as_view(),
-        name='update'
+        name='delete'
      ),
 ]
 
