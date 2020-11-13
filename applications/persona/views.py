@@ -10,6 +10,8 @@ from django.views.generic import (
 )
 # Models
 from .models import Empleado
+#Forms
+from .form import EmpleadoForm
 
 class InicioView(TemplateView):
     """Vista que carga la página de inicio"""
@@ -83,14 +85,7 @@ class SuccessView(TemplateView):
 class EmpleadoCreateView(CreateView):
     template_name = "persona/add.html"
     model = Empleado
-    fields = [
-        'first_name',
-        'last_name',
-        'job',
-        'departamento',
-        'habilidades',
-        'avatar'
-    ]
+    form_class = EmpleadoForm
     #fields = ('__all__')
     success_url = reverse_lazy('persona_app:empleados_admin')
 
