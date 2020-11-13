@@ -1,5 +1,41 @@
-<h1>Agregar empleado</h1>
+{% extends 'base.html' %} {% block title %} Registrar empleado {% endblock title %} {% block content %} {% include "includes/header.html" %}
+<div class="grid-container">
+    <h1 class="cell">Agregar empleado</h1>
+    <form method="POST" class="cell grid-x grid-margin-x" enctype="multipart/form-data">{% csrf_token %}
 
-<form method="POST">{% csrf_token %} {{ form.as_p }}
-    <button type="submit">Agregar</button>
-</form>
+        <div class="cell large-6">
+            <label>Nombres:
+                {{ form.first_name }}
+            </label>
+        </div>
+        <div class="cell large-6">
+            <label>Apellidos:
+                {{ form.last_name }}
+            </label>
+        </div>
+        <div class="cell large-6">
+            <label>Trabajo:
+                {{ form.job }}
+            </label>
+        </div>
+        <div class="cell large-6">
+            <label>Departamento:
+                {{ form.departamento }}
+            </label>
+        </div>
+        <div class="cell large-6">
+            <label>Habilidades:
+                {{ form.habilidades }}
+            </label>
+        </div>
+        <div class="cell large-6">
+            <label>Imagen:
+                {{ form.avatar }}
+            </label>
+        </div>
+        <div class="cell">
+            <button type="submit" class="button success expanded">Guardar</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

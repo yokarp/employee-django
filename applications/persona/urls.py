@@ -40,7 +40,8 @@ urlpatterns = [
     ),
     path(
         'add-empleado/',
-        views.EmpleadoCreateView.as_view()
+        views.EmpleadoCreateView.as_view(),
+        name='empleado_add'
     ),
      path(
         'success/',

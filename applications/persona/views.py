@@ -89,16 +89,17 @@ class EmpleadoCreateView(CreateView):
         'job',
         'departamento',
         'habilidades',
+        'avatar'
     ]
     #fields = ('__all__')
-    success_url = reverse_lazy('persona_app:correcto')
+    success_url = reverse_lazy('persona_app:empleados_admin')
 
     def form_valid(self, form):
         #Lógica del proceso
         empleado = form.save(commit=False)
         empleado.full_name = empleado.first_name + ' ' + empleado.last_name
         empleado.save()
-        return super(EmpleadoCreateView, self).form
+        return super(EmpleadoCreateView, self).form_valid(form)
 
 
 class EmpleadoUpdateView(UpdateView):
